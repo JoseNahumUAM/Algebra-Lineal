@@ -1,0 +1,11 @@
+﻿__pycache__/
+# 1) Crear/actualizar .gitignore
+@"
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.ipynb_checkpoints/
+.vscode/
