@@ -11,6 +11,11 @@ from tkinter import ttk
 
 from Gauss import mount_gauss   # <<<<< import desde Gauss.py
 from GaussJordan import mount_gauss_jordan # <<<<< import desde GaussJordan.py
+from MatrizInversa import mount_inversa    # <<<<< import desde GaussJordan.py
+from SumayMultiplicaciondeMatrices import mount_ops
+from VectorValidacion import mount_vector_validacion
+
+
 
 LOGO_PATH = "logo_uam.png"      # PNG para logo en header / fallback de icono
 ICON_PATH = "uam.ico"           # ICO recomendado para Windows (opcional)
@@ -128,6 +133,17 @@ class HubFrame(ttk.Frame):
             elif title == "Gauss-Jordan":
                 ttk.Button(cell, text="Abrir", style="CardBtn.TButton",
                command=self._open_gj).pack()   # ← usa _open_gj
+            elif title == "Matriz Inversa":
+                ttk.Button(cell, text="Abrir", style="CardBtn.TButton",
+               command=self._open_inversa).pack()
+            elif title == "Suma y Multiplicación":
+                ttk.Button(cell, text="Abrir", style="CardBtn.TButton",
+               command=self._open_ops).pack()
+            elif title == "Vector Validación":
+                ttk.Button(cell, text="Abrir", style="CardBtn.TButton",
+               command=self._open_vector).pack()
+
+
             else:
                 ttk.Button(cell, text="Abrir (próximamente)", style="CardBtn.TButton").pack()
 
@@ -146,6 +162,11 @@ class HubFrame(ttk.Frame):
         for w in parent.winfo_children():
             w.destroy()
         mount_gauss(parent, on_back=self._back_to_hub)
+    def _open_inversa(self):
+        parent = self.master
+        for w in parent.winfo_children():
+            w.destroy()
+        mount_inversa(parent, on_back=self._back_to_hub)
 
     def _open_gj(self):
         parent = self.master            # contenedor raíz donde está montado el hub
@@ -159,6 +180,16 @@ class HubFrame(ttk.Frame):
         for w in parent.winfo_children():
             w.destroy()
         HubFrame(parent, on_back=self.on_back).pack(fill="both", expand=True)
+    def _open_ops(self):
+        parent = self.master
+        for w in parent.winfo_children(): w.destroy()
+        mount_ops(parent, on_back=self._back_to_hub)
+    def _open_vector(self):
+        parent = self.master
+        for w in parent.winfo_children(): w.destroy()
+        mount_vector_validacion(parent, on_back=self._back_to_hub)
+
+
 
 # ---------- API pública ----------
 def mount(parent, on_back=None):
